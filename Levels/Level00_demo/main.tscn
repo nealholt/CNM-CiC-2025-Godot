@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cil1eb25wrcy4"]
+[gd_scene load_steps=4 format=3 uid="uid://cil1eb25wrcy4"]
 
 [ext_resource type="PackedScene" uid="uid://hccuyc1k1gj5" path="res://Scenes/Player.tscn" id="1_123nd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xrwdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_123nd"]
+size = Vector2(41, 60.5)
 
 [node name="Main" type="Node2D"]
 
@@ -12,5 +15,23 @@ position = Vector2(0, 500)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_xrwdg")
 
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -50.0
+offset_right = 1177.0
+offset_bottom = 40.0
+
 [node name="Player" parent="." instance=ExtResource("1_123nd")]
 position = Vector2(172, 183)
+
+[node name="Obstacle" type="StaticBody2D" parent="."]
+position = Vector2(300, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+position = Vector2(18.5, 29.75)
+shape = SubResource("RectangleShape2D_123nd")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacle"]
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 56.0
