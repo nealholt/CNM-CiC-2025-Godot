@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="CNM-CiC-2025-Godot"
+run/main_scene="uid://cil1eb25wrcy4"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
