@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cil1eb25wrcy4"]
+[gd_scene load_steps=5 format=3 uid="uid://cil1eb25wrcy4"]
 
+[ext_resource type="Script" uid="uid://rvkkfnp3gubt" path="res://Scripts/game_manager.gd" id="1_1kr3c"]
 [ext_resource type="PackedScene" uid="uid://hccuyc1k1gj5" path="res://Scenes/Player.tscn" id="1_123nd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xrwdg"]
@@ -8,6 +9,7 @@
 size = Vector2(41, 60.5)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_1kr3c")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 500)
@@ -35,3 +37,11 @@ offset_left = -3.0
 offset_top = -1.0
 offset_right = 40.0
 offset_bottom = 56.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 315.0
+offset_top = 148.0
+offset_right = 582.0
+offset_bottom = 349.0
+text = "
+Press 1 to load the demo scene"
