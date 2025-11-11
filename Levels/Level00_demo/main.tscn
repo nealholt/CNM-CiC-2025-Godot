@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cil1eb25wrcy4"]
+[gd_scene load_steps=8 format=3 uid="uid://cil1eb25wrcy4"]
 
 [ext_resource type="Script" uid="uid://rvkkfnp3gubt" path="res://Scripts/game_manager.gd" id="1_1kr3c"]
 [ext_resource type="PackedScene" uid="uid://hccuyc1k1gj5" path="res://Scenes/Player.tscn" id="1_123nd"]
+[ext_resource type="Script" uid="uid://dchcbaq2hy8s6" path="res://Scripts/portal.gd" id="3_k0vyt"]
+[ext_resource type="Texture2D" uid="uid://dj6hs13bg7k3c" path="res://Textures/spritesheet-tiles-default.png" id="4_fbp4u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xrwdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_123nd"]
 size = Vector2(41, 60.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nop6b"]
+size = Vector2(35, 113)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1kr3c")
@@ -45,3 +50,22 @@ offset_right = 582.0
 offset_bottom = 349.0
 text = "
 Press 1 to load the demo scene"
+
+[node name="Portal" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(635, 436)
+script = ExtResource("3_k0vyt")
+destination = "Level01_Tiles_demo/level_1_tileset_demo.tscn"
+
+[node name="Door" type="Sprite2D" parent="Portal"]
+texture = ExtResource("4_fbp4u")
+region_enabled = true
+region_rect = Rect2(960, 0, 64, 128)
+
+[node name="Area2D" type="Area2D" parent="Portal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal/Area2D"]
+position = Vector2(-0.5, 7.5)
+shape = SubResource("RectangleShape2D_nop6b")
+
+[connection signal="body_entered" from="Portal/Area2D" to="Portal" method="_on_area_2d_body_entered"]

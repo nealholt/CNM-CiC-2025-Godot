@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://dtc21dw8j060w"]
+[gd_scene load_steps=9 format=4 uid="uid://dtc21dw8j060w"]
 
+[ext_resource type="Script" uid="uid://rvkkfnp3gubt" path="res://Scripts/game_manager.gd" id="1_8fryd"]
 [ext_resource type="Texture2D" uid="uid://umh7kfc5j3rq" path="res://Textures/spritesheet-backgrounds-default.png" id="1_wgssv"]
 [ext_resource type="PackedScene" uid="uid://hccuyc1k1gj5" path="res://Scenes/Player.tscn" id="1_wqou8"]
 [ext_resource type="Texture2D" uid="uid://dj6hs13bg7k3c" path="res://Textures/spritesheet-tiles-default.png" id="2_t1ysd"]
@@ -437,6 +438,7 @@ terrain_set_0/terrain_0/color = Color(1, 0, 0.9137255, 1)
 sources/0 = SubResource("TileSetAtlasSource_t1ysd")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8fryd")
 
 [node name="Background Tilemap" type="TileMapLayer" parent="."]
 position = Vector2(0, -100)

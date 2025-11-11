@@ -15,9 +15,10 @@ func _ready() -> void:
 
 func load_level(level_path: String):
 	get_tree().change_scene_to_file(level_path)
-	print("Loading lavel: level_path")
+	print("Loading level: level_path")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("load_next_level"):
 		load_level("res://Levels/Level01_Tiles_demo/level_1_tileset_demo.tscn")
-	
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
