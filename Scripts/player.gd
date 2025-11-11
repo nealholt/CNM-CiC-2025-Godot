@@ -9,16 +9,27 @@ extends CharacterBody2D
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -650.0
 
+# Hold jump longer to jump higher. Release early to jump shorter.
+@export_range(0,1) var decelerate_on_jump_release := 0.5
+
+# Magnifier for gravity on the way down for a snappier jump feel
+@export var fall_gravity := 2.0
+
 
 #For physics processing I changed all inputs away from UI input events
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		if velocity.y > 0: # If falling
+			velocity += get_gravity() * delta * fall_gravity
+		else:
+			velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y *= decelerate_on_jump_release
 
 	# Get the input direction and handle the movement/deceleration.
 	#Replaced ui_left and ui_right with player controller actions not associated with the UI
@@ -38,7 +49,5 @@ func _physics_process(delta: float) -> void:
 		player_sprite.play("jump")
 	else:
 		player_sprite.play("idle")
-	
-	
 
 	move_and_slide()
