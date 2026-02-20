@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 #Get a reference to the animated sprite node attached to the Player root node
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hud_controller = get_node("/root/Main/UICanvas/HUD")
+var hud_controller
 
 #Changed player variables here to show them in editor for easier gameplay modifications.
 @export var SPEED = 300.0
@@ -28,8 +28,13 @@ var player_max_hp = 6
 @export var fall_gravity := 2.0
 
 func _ready() -> void:
-	pass
-	
+	# Only attach the hud_controller to a HUD node if
+	# it can be found. This will require the root node of
+	# every level to be named Main.
+	if has_node("/root/Main/UICanvas/HUD"):
+		hud_controller = get_node("/root/Main/UICanvas/HUD")
+	else:
+		print("WARNING: UICanvas/HUD not found!")
 
 
 #collect inputs here, pass them to various scripts as needed
